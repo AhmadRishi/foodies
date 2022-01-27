@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodies/screens/category_meal.dart';
+import 'package:foodies/screens/category_meal_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   final String id;
@@ -9,19 +9,23 @@ class CategoryItem extends StatelessWidget {
   CategoryItem(this.id, this.title, this.color);
 
   void selectCategory(BuildContext context) {
-    Navigator.of(context).pushNamed(CategoryMeal.routeName);
+    Navigator.of(context).pushNamed(
+      CategoryMeal.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+      },
+    );
   }
-
-  static var categoryName = '';
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         selectCategory(context);
-        categoryName = title;
       },
       splashColor: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(15.0),
       child: Container(
         padding: const EdgeInsets.all(15.0),
         child: Text(

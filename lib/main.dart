@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodies/screens/Categories.dart';
-import 'package:foodies/screens/category_meal.dart';
+import 'package:foodies/screens/Categories_screen.dart';
+import 'package:foodies/screens/category_meal_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,13 +18,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         //brightness: Brightness.dark,
         textTheme: ThemeData.light().textTheme.copyWith(
-            bodyText1: TextStyle(
+            bodyText1: const TextStyle(
               color: Color.fromRGBO(20, 50, 50, 1),
             ),
-            bodyText2: TextStyle(
+            bodyText2: const TextStyle(
               color: Color.fromRGBO(20, 50, 50, 1),
             ),
-            headline2: TextStyle(
+            headline2: const TextStyle(
               fontSize: 22,
               fontFamily: 'RobotoCondensed',
               fontWeight: FontWeight.bold,

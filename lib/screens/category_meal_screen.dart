@@ -12,9 +12,15 @@ class CategoryMeal extends StatefulWidget {
 class _CategoryMealState extends State<CategoryMeal> {
   @override
   Widget build(BuildContext context) {
+    final routeArg =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+
+    final categoryId = routeArg['id'];
+    final categoryTitle = routeArg['title'];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(CategoryItem.categoryName + ' Recipes'),
+        title: Text(categoryTitle!),
       ),
       body: null,
     );

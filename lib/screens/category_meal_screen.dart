@@ -22,7 +22,7 @@ class _CategoryMealState extends State<CategoryMeal> {
       appBar: AppBar(
         title: Text(categoryTitle!),
       ),
-      body: null,
+      body: ListView(),
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodies/screens/Categories_screen.dart';
 import 'package:foodies/screens/category_meal_screen.dart';
+import 'package:foodies/screens/details.dart';
+import 'package:foodies/screens/filters_screen.dart';
+import 'package:foodies/screens/tabs_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Foodies',
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        accentColor: Colors.amberAccent,
         //brightness: Brightness.dark,
         textTheme: ThemeData.light().textTheme.copyWith(
             bodyText1: const TextStyle(
@@ -31,11 +35,11 @@ class MyApp extends StatelessWidget {
             )),
       ),
       routes: {
-        '/': (context) => Categories(),
+        '/': (context) => TabsScreen(),
         CategoryMeal.routeName: (context) => CategoryMeal(),
+        MealDetalis.routeName: (context) => MealDetalis(),
+        FiltersScreen.routeName: (context) => FiltersScreen(),
       },
-      //home: const MyHomePage(title: 'Foodies'),
-      //home: Categories(),
     );
   }
 }

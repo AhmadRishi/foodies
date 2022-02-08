@@ -2,6 +2,7 @@ enum Complexity { Simple, Challenging, Hard }
 
 enum Affordability { Affordable, Pricey, Luxurious }
 
+
 class Meal {
   final String id;
   final List<String> categories;

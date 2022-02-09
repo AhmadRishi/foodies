@@ -4,11 +4,10 @@ import 'package:foodies/modules/meal.dart';
 import 'package:foodies/screens/details.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({this.items});
+  const MealItem({required this.items});
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context)
-        .pushNamed(MealDetalis.routeName, arguments: items.id);
+    Navigator.of(context).pushNamed(MealDetalis.routeName, arguments: items.id);
   }
 
   final items;

@@ -5,7 +5,9 @@ import 'package:foodies/modules/meal.dart';
 
 class MealDetalis extends StatelessWidget {
   static const routeName = 'meal_details';
-
+  var toggleFav;
+  var isFav;
+  MealDetalis(this.toggleFav, this.isFav);
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context)?.settings.arguments as String;
@@ -13,7 +15,9 @@ class MealDetalis extends StatelessWidget {
     final item = DUMMY_MEALS.firstWhere((meal) => meal.id == id);
 
     return Scaffold(
-      appBar: AppBar(title: Text(item.title)),
+      appBar: AppBar(
+        title: Text(item.title),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -64,6 +68,10 @@ class MealDetalis extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => toggleFav(id),
+        child: Icon(isFav(id) ? Icons.star : Icons.star_border_outlined),
       ),
     );
   }

@@ -6,9 +6,10 @@ import 'package:foodies/screens/category_meal_screen.dart';
 import 'package:foodies/screens/details.dart';
 import 'package:foodies/screens/filters_screen.dart';
 import 'package:foodies/screens/tabs_screen.dart';
+import 'package:foodies/splashscreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(SplashScreen());
 }
 
 class MyApp extends StatefulWidget {
@@ -19,14 +20,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<Meal> meals = DUMMY_MEALS;
+
   Map<String, bool> _filters = {
     'gluten': false,
     'lactose': false,
     'vegan': false,
     'vegetarian': false,
   };
-
-  List<Meal> meals = DUMMY_MEALS;
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -40,6 +41,26 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  List<Meal> _favoriteMeals = [];
+
+  void _toggleFavorite(String mealId) {
+    final favIndex = _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+
+    if (favIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(favIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(meals.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _isFavorite(String mealId) {
+    return _favoriteMeals.any((meal) => meal.id == mealId);
   }
 
   @override
@@ -65,9 +86,9 @@ class _MyAppState extends State<MyApp> {
             )),
       ),
       routes: {
-        '/': (context) => TabsScreen(),
+        '/': (context) => TabsScreen(_favoriteMeals),
         CategoryMeal.routeName: (context) => CategoryMeal(meals),
-        MealDetalis.routeName: (context) => MealDetalis(),
+        MealDetalis.routeName: (context) => MealDetalis(_toggleFavorite, _isFavorite),
         FiltersScreen.routeName: (context) =>
             FiltersScreen(_filters, _setFilters),
       },
